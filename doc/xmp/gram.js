@@ -24,11 +24,16 @@ class WaLxr extends Lxr {
   }
 
   async *bTxt() {
-    yield* await this.look("a").look("b")
-    yield* await this.any().look("b")
+    yield* await this.look("a")::this.look("b")
+    yield* await this.any()::this.look("b")
   }
 
+  bTxt$ = LX`${async function *() {
+    yield* await this.look("a")
+    yield* await this.any()
+  }}b`
+
   async *metas() {
-    yield* await this.bTxt().spc().bTxt(),
+    yield* await this.bTxt()::this.spc()::this.bTxt(),
   }
 }
