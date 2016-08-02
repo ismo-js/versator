@@ -57,7 +57,7 @@ class WaLxr extends Lxr {
 
 class Ret extends Lxr {
     *main() {
-        for (let x in this.combo()) yield this.RET(x.getIdentifier()).go(x)
+        for (let x in this.combo()) yield this.RET(x)
     }
 
     *combo() {
@@ -71,7 +71,7 @@ class Ret extends Lxr {
 
 class Ident extends Lxr {
     *main() {
-        for (let x of this.iN()) yield this.IDENT(x).go(x)
+        for (let x of this.iN()) yield this.IDENT(x)
     }
 
     *iN() {
@@ -89,5 +89,22 @@ class Ident extends Lxr {
         if (go.char === "a" || go.char === "b") {
             yield* go
         }
+    }
+}
+
+/*---*/
+
+class Ret extends Lxr {
+    ident = Ident.mix
+
+    *full() {
+        yield* this.kwd().space().ident()
+    }
+}
+
+class Ident extends Lxr {
+    *i() {
+        const go = this.next()
+        if (go.char === "a" || go.char == "b") yield* go
     }
 }
