@@ -1,4 +1,4 @@
-import {Lxr, LX} from 'versator'
+import {Lxr, LX} from "versator"
 
 const lxr = new Lxr({
   main: ()=> LX`${lxr.shebang}`,
