@@ -39,13 +39,15 @@ class WaLxr extends Lxr {
 
     *space1() {
         const go = this.next()
-        if (go.char === " " || go.char === "\t") yield this.Space1
+        if (go.char === " " || go.char === "\t") yield go.Space1
     }
 
     *identifier() {
         const go = this.next()
         if (go.char === "a" || go.char === "b") {
-            yield* go.identifier()
+            const ident = go.Identifier(go.char)
+            yield ident
+            yield* ident.identifier()
             //TODO how to save current char to yielded rest identifier?
         }
     }
