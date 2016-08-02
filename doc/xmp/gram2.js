@@ -52,3 +52,42 @@ class WaLxr extends Lxr {
         }
     }
 }
+
+/*---*/
+
+class Ret extends Lxr {
+    *main() {
+        for (let x in this.combo()) yield this.RET(x.getIdentifier()).go(x)
+    }
+
+    *combo() {
+        yield* this.kwd().space().ident()
+    }
+
+    *kwd() {
+        yield* this.look("return")
+    }
+}
+
+class Ident extends Lxr {
+    *main() {
+        for (let x of this.iN()) yield this.IDENT(x).go(x)
+    }
+
+    *iN() {
+        yield* this.i().n()
+    }
+
+    *n() {
+        const go = this.i()
+        yield* go
+        yield* go.n()
+    }
+
+    *i() {
+        const go = this.next()
+        if (go.char === "a" || go.char === "b") {
+            yield* go
+        }
+    }
+}
