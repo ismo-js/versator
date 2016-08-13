@@ -1,6 +1,8 @@
 class Lxr {
+    [Symbol.iterator] = ()=> this.ways
+
     constructor(ways) {
-        this.ways = ways.ways || ways
+        this.ways = [...ways]
     }
 
     *eat(char) {
