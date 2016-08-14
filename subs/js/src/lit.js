@@ -1,8 +1,12 @@
 class FixLit extends Lxr {
+    lits = [
+        "null",
+        "true",
+        "false",
+    ]
+
     *full() {
-        yield* this.eatN("null")
-        yield* this.eatN("true")
-        yield* this.eatN("false")
+        for (let lit of FixLit.lits) yield* this.eatN(lit)
     }
 }
 
