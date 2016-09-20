@@ -3,12 +3,12 @@ $Jump({
   type: CONT | BREAK | YIELD | RETURN | THROW
 })
 $If({
-  arg,
+  cond,
   then,
   other,
 })
 $Switch({
-  arg,
+  cond,
   blocks,
 })
 
@@ -20,13 +20,21 @@ $Try({
 })
 
 $Assign({
-  type: CONST | LET ¦ VAR,
+  type: CONST | LET | VAR,
   dest,
   block,
 })
 
 $Loop({
-  
+  type: DO_WHILE | FOR | WHILE,
+  init,
+  cond,
+  step,
+  then,
+})
+$Walk({
+  comp: Type,
+  then,
 })
 
 == EXPRESSION
